@@ -11,6 +11,7 @@ from typing import List, Dict, Any
 import yaml
 from PIL import Image
 from tqdm import tqdm
+import sys
 
 
 def load_config(config_path: str = "config/experiment.yaml") -> Dict:
@@ -21,77 +22,79 @@ def load_config(config_path: str = "config/experiment.yaml") -> Dict:
 
 def download_wmt2025_data(output_dir: str):
     """
-    Download WMT2025 multimodal translation data.
-    
-    TODO: Replace with actual download logic.
-    For now, this is a placeholder that explains what to do.
+    Download WMT2025 multimodal translation data using download script.
     """
     print("=" * 60)
-    print("WMT2025 Data Download Instructions")
+    print("📥 Downloading WMT2025 Data")
     print("=" * 60)
-    print("\n📥 Please download WMT2025 multimodal data manually:")
-    print("\n1. Visit: https://www2.statmt.org/wmt25/")
-    print("2. Download the multimodal MT task data")
-    print("3. Extract to:", output_dir)
-    print("\n4. Expected structure:")
-    print(f"   {output_dir}/")
-    print("   ├── source_texts.json  (or .txt)")
-    print("   ├── references.json")
-    print("   └── images/")
-    print("       ├── image_001.jpg")
-    print("       └── ...")
-    print("\n" + "=" * 60)
     
-    # Create placeholder structure
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
-    Path(f"{output_dir}/images").mkdir(exist_ok=True)
+    from download_data import download_wmt2025_data as download_func
     
-    print("\n✅ Created directory structure. Please place data files there.")
+    success = download_func(output_dir)
+    
+    if not success:
+        print("\n⚠️  Data download failed or skipped.")
+        print("    You can manually download from:")
+        print("    - Text: https://data.statmt.org/wmt25/general-mt/wmt25.jsonl")
+        print("    - Images: https://data.statmt.org/wmt25/general-mt/wmt25_genmt_assets.zip")
+        return False
+    
+    return True
 
 
 def load_wmt_data(data_dir: str) -> List[Dict[str, Any]]:
     """
-    Load WMT data from the downloaded files.
-    
-    TODO: Adapt this to actual WMT2025 data format.
+    Load WMT2025 data from the downloaded files.
+    Handles the official WMT25 format.
     """
     data_dir = Path(data_dir)
     
-    # Example: Try to load from common formats
     samples = []
     
-    # Try JSON format first
-    source_file = data_dir / "source_texts.json"
-    if source_file.exists():
-        with open(source_file, 'r', encoding='utf-8') as f:
-            source_data = json.load(f)
-            
-        # Assuming format: [{"id": "...", "text": "...", "image": "..."}]
-        for item in source_data:
-            sample = {
-                "id": item.get("id", f"sample_{len(samples)}"),
-                "source_text": item.get("text", ""),
-                "target_lang": "de",
-                "image_path": str(data_dir / "images" / item.get("image", "")),
-            }
-            samples.append(sample)
+    # Try JSONL format first (WMT25 format)
+    jsonl_files = list(data_dir.glob("*.jsonl"))
     
-    # Try JSONL format
-    source_file_jsonl = data_dir / "source_texts.jsonl"
-    if source_file_jsonl.exists():
-        with jsonlines.open(source_file_jsonl) as reader:
+    if jsonl_files:
+        jsonl_file = jsonl_files[0]
+        print(f"📖 Loading from: {jsonl_file.name}")
+        
+        with jsonlines.open(jsonl_file) as reader:
             for idx, item in enumerate(reader):
+                # WMT25 format typically has:
+                # - id, language, text, assets/images
+                
+                image_path = None
+                
+                # Handle different possible formats for images
+                if 'assets' in item and isinstance(item['assets'], dict):
+                    # If images are nested in assets
+                    for key, val in item['assets'].items():
+                        if isinstance(val, str) and any(val.endswith(ext) for ext in ['.jpg', '.png', '.jpeg']):
+                            image_path = val
+                            break
+                
+                if not image_path and 'image' in item:
+                    image_path = item.get('image')
+                
+                if not image_path and 'img' in item:
+                    image_path = item.get('img')
+                
+                # Build sample
                 sample = {
                     "id": item.get("id", f"sample_{idx}"),
                     "source_text": item.get("text", item.get("source", "")),
-                    "target_lang": item.get("target_lang", "de"),
-                    "image_path": str(data_dir / "images" / item.get("image", "")),
+                    "target_lang": item.get("language", item.get("target_lang", "de")),
+                    "image_path": image_path,
+                    "raw_item": item,  # Keep original for reference
                 }
+                
                 samples.append(sample)
     
     if not samples:
-        print("\n⚠️  No data found. Creating dummy samples for testing...")
+        print("\n⚠️  No JSONL data found. Creating dummy samples for testing...")
         samples = create_dummy_samples(data_dir)
+    else:
+        print(f"✅ Loaded {len(samples)} samples from JSONL")
     
     return samples
 
@@ -201,12 +204,34 @@ def main():
     
     # Step 1: Download/prepare raw data
     print("\n📥 Step 1: Download WMT2025 data")
-    download_wmt2025_data(data_config['raw_data_dir'])
+    data_dir = data_config['raw_data_dir']
+    
+    # Check if data already exists
+    data_path = Path(data_dir)
+    existing_jsonl = list(data_path.glob("*.jsonl"))
+    
+    if existing_jsonl:
+        print(f"✅ Data already exists: {existing_jsonl[0].name}")
+        print("   Skipping download.")
+    else:
+        print(f"Downloading to: {data_dir}")
+        success = download_wmt2025_data(data_dir)
+        if not success:
+            print("\n⚠️  Download was skipped or failed.")
+            print("    You can manually download from:")
+            print("    - Text: https://data.statmt.org/wmt25/general-mt/wmt25.jsonl")
+            print("    - Images: https://data.statmt.org/wmt25/general-mt/wmt25_genmt_assets.zip")
+            print("\n    Then run this script again.")
+            return
     
     # Step 2: Load data
     print("\n📖 Step 2: Load data")
-    all_samples = load_wmt_data(data_config['raw_data_dir'])
+    all_samples = load_wmt_data(data_dir)
     print(f"Loaded {len(all_samples)} total samples")
+    
+    if len(all_samples) == 0:
+        print("\n❌ No samples loaded. Cannot continue.")
+        return
     
     # Step 3: Create debug subset (3-5 samples for Day 1)
     print("\n🔬 Step 3: Create debug subset")
