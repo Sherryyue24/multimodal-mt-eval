@@ -1,0 +1,22 @@
+# Core dependencies
+numpy>=1.21.0
+torch>=2.0.0
+transformers>=4.30.0
+pillow>=9.0.0
+
+# Evaluation metrics
+sacrebleu>=2.3.0
+bert-score>=0.3.13
+nltk>=3.8
+
+# Data processing
+pandas>=1.5.0
+datasets>=2.14.0
+
+# Visualization
+matplotlib>=3.5.0
+seaborn>=0.12.0
+
+# Utilities
+tqdm>=4.65.0
+pyyaml>=6.0

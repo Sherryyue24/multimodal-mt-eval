@@ -1,1 +1,175 @@
-# multimodal-mt-eval
+# Multimodal Machine Translation Evaluation
+
+A comprehensive Python framework for evaluating multimodal machine translation systems using both text-based and multimodal metrics.
+
+## Features
+
+- 📊 **Multiple Evaluation Metrics**: Support for BLEU, BERTScore, and extensible to custom metrics
+- 🖼️ **Multimodal Support**: Designed to evaluate translations with visual context
+- 🚀 **Easy to Use**: Simple API for both single and batch evaluation
+- 🔧 **Extensible**: Easy to add custom metrics and data loaders
+- 🧪 **Well-Tested**: Comprehensive test suite included
+
+## Installation
+
+### From Source
+
+```bash
+git clone https://github.com/Sherryyue24/multimodal-mt-eval.git
+cd multimodal-mt-eval
+pip install -e .
+```
+
+### Requirements
+
+- Python >= 3.8
+- PyTorch >= 2.0.0
+- Transformers >= 4.30.0
+- See `requirements.txt` for full list of dependencies
+
+## Quick Start
+
+### Basic Usage
+
+```python
+from multimodal_mt_eval import MultimodalMTEvaluator
+
+# Sample translations
+predictions = [
+    "A cat is sitting on a mat.",
+    "The dog runs in the park.",
+]
+
+references = [
+    "A cat is sitting on the mat.",
+    "The dog is running in the park.",
+]
+
+# Initialize evaluator
+evaluator = MultimodalMTEvaluator(
+    metrics=["bleu", "bert_score"],
+    device="cpu"  # Use "cuda" for GPU
+)
+
+# Evaluate
+results = evaluator.evaluate(predictions, references)
+print(results)
+# Output: {'bleu': 75.23, 'bert_score': 0.94}
+```
+
+### Batch Evaluation
+
+```python
+from multimodal_mt_eval import MultimodalMTEvaluator
+
+data = [
+    {
+        "prediction": "A beautiful sunset over the ocean.",
+        "reference": "A stunning sunset over the sea.",
+    },
+    {
+        "prediction": "A red car is parked on the street.",
+        "reference": "A red vehicle is parked on the road.",
+    },
+]
+
+evaluator = MultimodalMTEvaluator(metrics=["bleu", "bert_score"])
+results = evaluator.evaluate_batch(data)
+print(results)
+```
+
+## Project Structure
+
+```
+multimodal-mt-eval/
+├── src/
+│   └── multimodal_mt_eval/
+│       ├── __init__.py
+│       ├── evaluator.py      # Main evaluator
+│       ├── metrics.py         # Metric implementations
+│       └── data_loader.py     # Data loading utilities
+├── examples/
+│   ├── basic_usage.py         # Basic usage example
+│   └── batch_evaluation.py    # Batch evaluation example
+├── tests/
+│   ├── test_metrics.py
+│   └── test_evaluator.py
+├── requirements.txt
+├── setup.py
+└── README.md
+```
+
+## Supported Metrics
+
+### Text-based Metrics
+
+- **BLEU**: Bilingual Evaluation Understudy (using SacreBLEU)
+- **BERTScore**: Contextual embeddings-based metric for semantic similarity
+
+### Multimodal Metrics (Coming Soon)
+
+- CLIP-based image-text alignment
+- Multimodal embedding similarity
+- Custom vision-language metrics
+
+## Development
+
+### Running Tests
+
+```bash
+# Install development dependencies
+pip install pytest pytest-cov
+
+# Run tests
+pytest tests/
+
+# Run with coverage
+pytest tests/ --cov=multimodal_mt_eval
+```
+
+### Running Examples
+
+```bash
+# Basic usage
+python examples/basic_usage.py
+
+# Batch evaluation
+python examples/batch_evaluation.py
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Citation
+
+If you use this framework in your research, please cite:
+
+```bibtex
+@software{multimodal_mt_eval,
+  title = {Multimodal Machine Translation Evaluation Framework},
+  author = {Sherryyue24},
+  year = {2026},
+  url = {https://github.com/Sherryyue24/multimodal-mt-eval}
+}
+```
+
+## Acknowledgments
+
+- Built with PyTorch and Hugging Face Transformers
+- Uses SacreBLEU and BERTScore for evaluation metrics
+- Inspired by research in multimodal machine translation
+
+## Contact
+
+For questions or feedback, please open an issue on GitHub.
