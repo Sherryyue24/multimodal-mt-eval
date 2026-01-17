@@ -32,11 +32,12 @@ env/
 *.swo
 *~
 
-# Data
-data/
-*.csv
-*.json
-*.xml
+# Experiment data and outputs (large files)
+data/wmt2025_raw/
+data/debug_samples.jsonl
+data/experiment_data.jsonl
+outputs/
+analysis/
 
 # Models
 models/
@@ -52,6 +53,9 @@ logs/
 
 # Environment variables
 .env
+
+# API keys
+.openai_key
 
 # OS
 .DS_Store

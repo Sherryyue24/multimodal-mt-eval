@@ -2,13 +2,25 @@
 
 A comprehensive Python framework for evaluating multimodal machine translation systems using both text-based and multimodal metrics.
 
+**🧪 Now includes a complete 4-day experimental pipeline for Qwen2-VL-2B multimodal MT evaluation!**
+
+👉 **See [EXPERIMENT_GUIDE.md](EXPERIMENT_GUIDE.md) for the step-by-step experiment workflow.**
+
 ## Features
 
-- 📊 **Multiple Evaluation Metrics**: Support for BLEU, BERTScore, and extensible to custom metrics
+### Evaluation Framework
+- 📊 **Multiple Evaluation Metrics**: Support for BLEU, BERTScore, CometKiwi
 - 🖼️ **Multimodal Support**: Designed to evaluate translations with visual context
 - 🚀 **Easy to Use**: Simple API for both single and batch evaluation
 - 🔧 **Extensible**: Easy to add custom metrics and data loaders
 - 🧪 **Well-Tested**: Comprehensive test suite included
+
+### Experimental Pipeline (NEW!)
+- 🎯 **4-Day Experiment Protocol**: Complete workflow for multimodal MT experiments
+- 🤖 **Qwen2-VL Integration**: Ready-to-use inference scripts for Qwen2-VL-2B
+- 📈 **Automated Evaluation**: CometKiwi + LLM-as-a-Judge evaluation
+- 🔍 **Error Analysis**: Systematic analysis of when multimodal context helps/hurts
+- 💾 **Robust Pipeline**: Incremental saving, crash recovery, reproducible results
 
 ## Installation
 
