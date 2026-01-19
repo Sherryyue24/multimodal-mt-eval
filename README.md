@@ -41,7 +41,32 @@ pip install -e .
 
 ## Quick Start
 
-### Basic Usage
+### 🚀 Run the 4-Day Experiment
+
+To run the complete Qwen2-VL-2B multimodal MT evaluation experiment:
+
+```bash
+# Step 1: Download WMT2025 data (5-10 minutes)
+python scripts/prepare_data.py
+
+# Step 2: Day 1 - Text-only vs Multimodal Inference (30-60 minutes)
+python scripts/infer_text_only.py     # Run text-only inference
+python scripts/infer_multimodal.py    # Run multimodal inference
+
+# Step 3: Day 2 - Full-scale Inference (4-8 hours)
+python scripts/run_full_inference.py
+
+# Step 4: Day 3 - Evaluation & Analysis (4-6 hours)
+python scripts/eval_comet.py          # Automatic MT quality evaluation
+python scripts/judge.py               # LLM-as-Judge pairwise comparison
+
+# Step 5: Day 4 - Error Analysis (manual annotation)
+python scripts/analyze_errors.py
+```
+
+📋 **See [QUICKSTART.md](QUICKSTART.md) for detailed step-by-step instructions.**
+
+### Basic Usage (Framework API)
 
 ```python
 from multimodal_mt_eval import MultimodalMTEvaluator

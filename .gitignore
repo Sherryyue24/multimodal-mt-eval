@@ -37,7 +37,6 @@ data/wmt2025_raw/
 data/debug_samples.jsonl
 data/experiment_data.jsonl
 outputs/
-analysis/
 
 # Models
 models/

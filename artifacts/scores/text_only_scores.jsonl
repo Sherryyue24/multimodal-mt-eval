@@ -1,0 +1,5 @@
+{"id": "en-ar_EG_#_social_#_112502991207286008", "metric": "bertscore", "score": 0.585527777671814, "mode": "text_only", "target_lang": "ar_EG"}
+{"id": "en-ar_EG_#_social_#_114151944720213193", "metric": "bertscore", "score": 0.6078298687934875, "mode": "text_only", "target_lang": "ar_EG"}
+{"id": "en-ar_EG_#_social_#_114157282362077575", "metric": "bertscore", "score": 0.6231740713119507, "mode": "text_only", "target_lang": "ar_EG"}
+{"id": "en-ar_EG_#_social_#_114174389242714730", "metric": "bertscore", "score": 0.566244900226593, "mode": "text_only", "target_lang": "ar_EG"}
+{"id": "en-ar_EG_#_social_#_114220065940975488", "metric": "bertscore", "score": 0.39709606766700745, "mode": "text_only", "target_lang": "ar_EG"}
