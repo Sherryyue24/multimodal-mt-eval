@@ -1,0 +1,99 @@
+======================================================================
+ERROR TAXONOMY ANALYSIS
+Generated: 2026-01-20 15:38:34
+======================================================================
+
+### 1. Overall Quality Comparison
+--------------------------------------------------
+Total samples: 265
+Text-Only problematic samples: 30 (11.3%)
+Text-Image problematic samples: 14 (5.3%)
+Improvement: 16 samples (6.0%)
+
+### 2. Issue Types
+--------------------------------------------------
+Text-Only:  {'lang_mixing': 24, 'repetition': 6}
+Text-Image: {'lang_mixing': 14}
+
+### 3. Per-Language Analysis
+----------------------------------------------------------------------
+Lang Pair            Count    TO Err%    TI Err%    TI Win   TO Win  
+----------------------------------------------------------------------
+ja-zh_CN             13       0.0        0.0        0        0       
+en-ar_EG             9        22.2       0.0        2        0       
+en-bho_IN            9        0.0        0.0        0        0       
+en-bn_BD             9        11.1       0.0        1        0       
+en-cs_CZ             9        0.0        0.0        0        0       
+en-de_DE             9        0.0        0.0        0        0       
+en-el_GR             9        0.0        0.0        0        0       
+en-et_EE             9        0.0        0.0        0        0       
+en-fa_IR             9        11.1       0.0        1        0       
+en-hi_IN             9        0.0        0.0        0        0       
+en-id_ID             9        0.0        0.0        0        0       
+en-is_IS             9        0.0        0.0        0        0       
+en-it_IT             9        0.0        0.0        0        0       
+en-ja_JP             9        77.8       44.4       3        0       
+en-kn_IN             9        0.0        0.0        0        0       
+en-ko_KR             9        22.2       22.2       2        2       
+en-lt_LT             9        0.0        0.0        0        0       
+en-mas_KE            9        0.0        0.0        0        0       
+en-mr_IN             9        0.0        0.0        0        0       
+en-ro_RO             9        11.1       0.0        1        0       
+en-ru_RU             9        22.2       0.0        2        0       
+en-sr_Cyrl_RS        9        11.1       0.0        1        0       
+en-sr_Latn_RS        9        0.0        0.0        0        0       
+en-sv_SE             9        11.1       0.0        1        0       
+en-th_TH             9        22.2       11.1       2        1       
+en-tr_TR             9        0.0        0.0        0        0       
+en-uk_UA             9        0.0        0.0        0        0       
+en-vi_VN             9        22.2       0.0        2        0       
+en-zh_CN             9        88.9       77.8       1        0       
+
+### 4. Per-Domain Analysis
+--------------------------------------------------
+social: TO errors=11.3%, TI errors=5.3% (n=265)
+
+### 5. Sample Differences (Top 10)
+----------------------------------------------------------------------
+
+Sample: en-ar_EG_#_social_#_112502991207286008...
+  TO issues: ['lang_mixing']
+  TI issues: None
+
+Sample: en-ar_EG_#_social_#_114417630342798842...
+  TO issues: ['repetition']
+  TI issues: None
+
+Sample: en-bn_BD_#_social_#_114259278941004365...
+  TO issues: ['lang_mixing']
+  TI issues: None
+
+Sample: en-fa_IR_#_social_#_114417630342798842...
+  TO issues: ['repetition']
+  TI issues: None
+
+Sample: en-ja_JP_#_social_#_114157282362077575...
+  TO issues: ['lang_mixing']
+  TI issues: None
+
+Sample: en-ja_JP_#_social_#_114300646822630777...
+  TO issues: ['lang_mixing']
+  TI issues: None
+
+Sample: en-ja_JP_#_social_#_114417630342798842...
+  TO issues: ['repetition']
+  TI issues: None
+
+Sample: en-ko_KR_#_social_#_112502991207286008...
+  TO issues: None
+  TI issues: ['lang_mixing']
+
+Sample: en-ko_KR_#_social_#_114259278941004365...
+  TO issues: None
+  TI issues: ['lang_mixing']
+
+Sample: en-ko_KR_#_social_#_114294867111841563...
+  TO issues: ['lang_mixing']
+  TI issues: None
+
+======================================================================

@@ -104,11 +104,10 @@ class TextOnlyInference(BaseInference):
             with torch.no_grad():
                 generated_ids = self.model.generate(
                     **inputs,
-                    max_new_tokens=config.max_new_tokens,
-                    do_sample=config.do_sample,
-                    temperature=config.temperature if config.do_sample else None,
-                    top_p=config.top_p if config.do_sample else None,
-                    top_k=None,
+                    max_new_tokens=256,  # Reduced from config to prevent late-stage collapse
+                    do_sample=False,
+                    repetition_penalty=1.2,
+                    no_repeat_ngram_size=4,  # Critical: prevents repetition loops
                     pad_token_id=self.processor.tokenizer.pad_token_id
                 )
             
@@ -146,7 +145,9 @@ def run_text_only_inference(
     output_file: Path,
     model_name: str = "Qwen/Qwen2-VL-2B-Instruct",
     device: str = "mps",
-    limit: Optional[int] = None
+    limit: Optional[int] = None,
+    start_idx: int = 0,
+    append: bool = False
 ) -> dict:
     """
     Run text-only inference on samples file.
@@ -157,31 +158,49 @@ def run_text_only_inference(
         model_name: Model to use
         device: Device to run on
         limit: Max samples to process
+        start_idx: Start from this sample index (for resume)
+        append: Append to output file instead of overwrite
         
     Returns:
         Stats dict
     """
     import jsonlines
-    from tqdm import tqdm
+    from collections import deque
     from ..processing.build_samples import load_samples
     
     # Load samples
     samples = list(load_samples(samples_file))
+    total_available = len(samples)
+    
+    # Apply start_idx and limit
+    samples = samples[start_idx:]
     if limit:
         samples = samples[:limit]
+    
+    if not samples:
+        print("No samples to process!")
+        return {"total": 0, "success": 0, "error": 0}
+    
+    print(f"Processing samples {start_idx} to {start_idx + len(samples)} of {total_available}")
     
     # Initialize inference engine
     engine = TextOnlyInference(model_name=model_name, device=device)
     engine.load_model()
     
     stats = {"total": 0, "success": 0, "error": 0}
+    times = deque(maxlen=20)  # Rolling window for avg
     
     output_file.parent.mkdir(parents=True, exist_ok=True)
+    mode = 'a' if append else 'w'
     
     try:
-        with jsonlines.open(output_file, mode='w') as writer:
-            for sample in tqdm(samples, desc="Text-only inference"):
+        with jsonlines.open(output_file, mode=mode, flush=True) as writer:
+            for i, sample in enumerate(samples):
+                sample_start = time.time()
                 prediction = engine.run_inference(sample)
+                sample_time = time.time() - sample_start
+                times.append(sample_time)
+                
                 writer.write(prediction.to_dict())
                 
                 stats["total"] += 1
@@ -189,6 +208,14 @@ def run_text_only_inference(
                     stats["error"] += 1
                 else:
                     stats["success"] += 1
+                
+                # Print progress every 10 samples
+                if (i + 1) % 10 == 0 or (i + 1) == len(samples):
+                    avg_time = sum(times) / len(times)
+                    remaining = len(samples) - (i + 1)
+                    eta_sec = remaining * avg_time
+                    eta_h = eta_sec / 3600
+                    print(f"  [{i+1}/{len(samples)}] avg: {avg_time:.1f}s | ETA: {eta_h:.2f}h | errors: {stats['error']}", flush=True)
     finally:
         engine.unload_model()
     

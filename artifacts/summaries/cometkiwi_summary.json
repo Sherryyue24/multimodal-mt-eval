@@ -1,0 +1,223 @@
+{
+  "metric": "CometKiwi (wmt22-cometkiwi-da)",
+  "timestamp": "2026-01-20T15:38:34.064215",
+  "total_samples": 265,
+  "overall": {
+    "text_only": {
+      "count": 265,
+      "mean": 0.4628,
+      "min": 0.1621,
+      "max": 0.7307
+    },
+    "text_image": {
+      "count": 265,
+      "mean": 0.4795,
+      "min": 0.2745,
+      "max": 0.7086
+    },
+    "delta": 0.0167
+  },
+  "pairwise_comparison": {
+    "text_image_wins": 133,
+    "text_only_wins": 128,
+    "ties": 6
+  },
+  "by_language": {
+    "ar_EG": {
+      "text_only_mean": 0.3786,
+      "text_image_mean": 0.4432,
+      "delta": 0.0645,
+      "text_image_wins": 6,
+      "count": 9
+    },
+    "bho_IN": {
+      "text_only_mean": 0.4838,
+      "text_image_mean": 0.4816,
+      "delta": -0.0021,
+      "text_image_wins": 5,
+      "count": 9
+    },
+    "bn_BD": {
+      "text_only_mean": 0.4526,
+      "text_image_mean": 0.4724,
+      "delta": 0.0198,
+      "text_image_wins": 5,
+      "count": 9
+    },
+    "cs_CZ": {
+      "text_only_mean": 0.3298,
+      "text_image_mean": 0.3748,
+      "delta": 0.045,
+      "text_image_wins": 5,
+      "count": 9
+    },
+    "de_DE": {
+      "text_only_mean": 0.3791,
+      "text_image_mean": 0.475,
+      "delta": 0.0958,
+      "text_image_wins": 8,
+      "count": 9
+    },
+    "el_GR": {
+      "text_only_mean": 0.4328,
+      "text_image_mean": 0.4427,
+      "delta": 0.0098,
+      "text_image_wins": 4,
+      "count": 9
+    },
+    "et_EE": {
+      "text_only_mean": 0.4728,
+      "text_image_mean": 0.4422,
+      "delta": -0.0306,
+      "text_image_wins": 4,
+      "count": 9
+    },
+    "fa_IR": {
+      "text_only_mean": 0.3441,
+      "text_image_mean": 0.3988,
+      "delta": 0.0547,
+      "text_image_wins": 6,
+      "count": 9
+    },
+    "hi_IN": {
+      "text_only_mean": 0.3845,
+      "text_image_mean": 0.4635,
+      "delta": 0.079,
+      "text_image_wins": 6,
+      "count": 9
+    },
+    "id_ID": {
+      "text_only_mean": 0.4523,
+      "text_image_mean": 0.4957,
+      "delta": 0.0434,
+      "text_image_wins": 6,
+      "count": 9
+    },
+    "is_IS": {
+      "text_only_mean": 0.3781,
+      "text_image_mean": 0.4061,
+      "delta": 0.028,
+      "text_image_wins": 3,
+      "count": 9
+    },
+    "it_IT": {
+      "text_only_mean": 0.4762,
+      "text_image_mean": 0.4746,
+      "delta": -0.0016,
+      "text_image_wins": 3,
+      "count": 9
+    },
+    "ja_JP": {
+      "text_only_mean": 0.5854,
+      "text_image_mean": 0.6016,
+      "delta": 0.0162,
+      "text_image_wins": 7,
+      "count": 9
+    },
+    "kn_IN": {
+      "text_only_mean": 0.5217,
+      "text_image_mean": 0.5285,
+      "delta": 0.0067,
+      "text_image_wins": 4,
+      "count": 9
+    },
+    "ko_KR": {
+      "text_only_mean": 0.5236,
+      "text_image_mean": 0.5372,
+      "delta": 0.0136,
+      "text_image_wins": 3,
+      "count": 9
+    },
+    "lt_LT": {
+      "text_only_mean": 0.4525,
+      "text_image_mean": 0.5269,
+      "delta": 0.0744,
+      "text_image_wins": 6,
+      "count": 9
+    },
+    "mas_KE": {
+      "text_only_mean": 0.4908,
+      "text_image_mean": 0.4929,
+      "delta": 0.0021,
+      "text_image_wins": 5,
+      "count": 9
+    },
+    "mr_IN": {
+      "text_only_mean": 0.5174,
+      "text_image_mean": 0.5109,
+      "delta": -0.0065,
+      "text_image_wins": 2,
+      "count": 9
+    },
+    "ro_RO": {
+      "text_only_mean": 0.2905,
+      "text_image_mean": 0.5084,
+      "delta": 0.2178,
+      "text_image_wins": 8,
+      "count": 9
+    },
+    "ru_RU": {
+      "text_only_mean": 0.4929,
+      "text_image_mean": 0.4842,
+      "delta": -0.0088,
+      "text_image_wins": 4,
+      "count": 9
+    },
+    "sr_Cyrl_RS": {
+      "text_only_mean": 0.488,
+      "text_image_mean": 0.5203,
+      "delta": 0.0323,
+      "text_image_wins": 5,
+      "count": 9
+    },
+    "sr_Latn_RS": {
+      "text_only_mean": 0.5133,
+      "text_image_mean": 0.4989,
+      "delta": -0.0144,
+      "text_image_wins": 4,
+      "count": 9
+    },
+    "sv_SE": {
+      "text_only_mean": 0.4346,
+      "text_image_mean": 0.4084,
+      "delta": -0.0262,
+      "text_image_wins": 4,
+      "count": 9
+    },
+    "th_TH": {
+      "text_only_mean": 0.5464,
+      "text_image_mean": 0.4665,
+      "delta": -0.0799,
+      "text_image_wins": 2,
+      "count": 9
+    },
+    "tr_TR": {
+      "text_only_mean": 0.5451,
+      "text_image_mean": 0.481,
+      "delta": -0.064,
+      "text_image_wins": 2,
+      "count": 9
+    },
+    "uk_UA": {
+      "text_only_mean": 0.435,
+      "text_image_mean": 0.4295,
+      "delta": -0.0055,
+      "text_image_wins": 4,
+      "count": 9
+    },
+    "vi_VN": {
+      "text_only_mean": 0.5479,
+      "text_image_mean": 0.5203,
+      "delta": -0.0277,
+      "text_image_wins": 4,
+      "count": 9
+    },
+    "zh_CN": {
+      "text_only_mean": 0.5223,
+      "text_image_mean": 0.5045,
+      "delta": -0.0178,
+      "text_image_wins": 8,
+      "count": 22
+    }
+  }
+}

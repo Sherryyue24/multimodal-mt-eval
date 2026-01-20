@@ -1,33 +1,23 @@
 {
-  "run_id": "20260119_211609",
-  "timestamp": "2026-01-19T21:16:09.875046",
+  "run_id": "20260120_153834",
+  "timestamp": "2026-01-20T15:38:34.086080",
   "config": {
-    "limit": 5,
+    "limit": null,
     "model_name": "Qwen/Qwen2-VL-2B-Instruct",
     "device": "mps",
-    "filter_has_image": true,
+    "filter_has_image": false,
     "stages": [
-      "inference"
+      "summary"
     ]
   },
   "stages": {
-    "inference_text_only": {
-      "mode": "text_only",
-      "stats": {
-        "total": 5,
-        "success": 5,
-        "error": 0
+    "aggregation": {
+      "files": {
+        "cometkiwi_summary": "/Users/yue/Documents/code/nlpproject/multimodal-mt-eval/artifacts/summaries/cometkiwi_summary.json",
+        "llm_judge_summary": "/Users/yue/Documents/code/nlpproject/multimodal-mt-eval/artifacts/summaries/llm_judge_summary.json",
+        "evaluation_report": "/Users/yue/Documents/code/nlpproject/multimodal-mt-eval/artifacts/summaries/evaluation_report.txt"
       },
-      "elapsed_sec": 374.72648000717163
-    },
-    "inference_text_image": {
-      "mode": "text_image",
-      "stats": {
-        "total": 5,
-        "success": 5,
-        "error": 0
-      },
-      "elapsed_sec": 217.1028699874878
+      "elapsed_sec": 0.022715330123901367
     }
   },
   "paths": {
@@ -37,8 +27,9 @@
     "predictions_text_image": "/Users/yue/Documents/code/nlpproject/multimodal-mt-eval/artifacts/predictions/text_image.jsonl",
     "scores_text_only": "/Users/yue/Documents/code/nlpproject/multimodal-mt-eval/artifacts/scores/text_only_scores.jsonl",
     "scores_text_image": "/Users/yue/Documents/code/nlpproject/multimodal-mt-eval/artifacts/scores/text_image_scores.jsonl",
+    "judge_results": "/Users/yue/Documents/code/nlpproject/multimodal-mt-eval/artifacts/scores/judge_results.jsonl",
     "summary": "/Users/yue/Documents/code/nlpproject/multimodal-mt-eval/artifacts/summaries/summary.json",
     "manifest": "/Users/yue/Documents/code/nlpproject/multimodal-mt-eval/artifacts/run_manifest.json"
   },
-  "total_elapsed_sec": 591.8380949497223
+  "total_elapsed_sec": 0.022743701934814453
 }

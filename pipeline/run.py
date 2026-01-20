@@ -19,11 +19,15 @@ from .processing.validators import validate_samples_batch
 from .inference.text_only import run_text_only_inference
 from .inference.text_image import run_text_image_inference
 from .analysis.scoring import score_predictions
+from .analysis.judging import run_pairwise_judging
 from .analysis.aggregation import (
     aggregate_scores_by_mode,
     aggregate_scores_by_language,
+    aggregate_judge_results,
     generate_summary_report
 )
+from .analysis.summary import generate_full_summary
+from .analysis.error_taxonomy import run_error_analysis
 
 
 def get_paths(base_dir: Path) -> Dict[str, Path]:
@@ -44,6 +48,9 @@ def get_paths(base_dir: Path) -> Dict[str, Path]:
         # Scores
         "scores_text_only": artifacts / "scores" / "text_only_scores.jsonl",
         "scores_text_image": artifacts / "scores" / "text_image_scores.jsonl",
+        
+        # Judge results
+        "judge_results": artifacts / "scores" / "judge_results.jsonl",
         
         # Summary
         "summary": artifacts / "summaries" / "summary.json",
@@ -198,42 +205,122 @@ def run_scoring(
     }
 
 
-def run_aggregation(paths: Dict[str, Path]) -> Dict[str, Any]:
-    """Stage 4: Aggregate results."""
+def run_judging(
+    paths: Dict[str, Path],
+    judge_model: str = "gpt-4o-mini",
+    limit: Optional[int] = None
+) -> Dict[str, Any]:
+    """Stage 4: LLM-as-a-Judge pairwise evaluation."""
     print("\n" + "="*60)
-    print("STAGE 4: Aggregation")
+    print("STAGE 4: LLM-as-a-Judge (Pairwise)")
     print("="*60)
     
     start_time = time.time()
     
-    # Combine scores from both modes
-    all_scores = []
-    for mode in ["text_only", "text_image"]:
-        scores_file = paths[f"scores_{mode}"]
-        if scores_file.exists():
-            all_scores.append(scores_file)
+    # Check if both prediction files exist
+    if not paths["predictions_text_only"].exists():
+        print("  ERROR: text_only predictions not found")
+        return {"error": "text_only predictions not found"}
     
-    if not all_scores:
-        print("  No scores to aggregate!")
-        return {"error": "No scores found"}
+    if not paths["predictions_text_image"].exists():
+        print("  ERROR: text_image predictions not found")
+        return {"error": "text_image predictions not found"}
     
-    # For now, aggregate the first available
-    scores_by_mode = aggregate_scores_by_mode(all_scores[0])
-    scores_by_lang = aggregate_scores_by_language(all_scores[0])
+    print(f"  Judge model: {judge_model}")
+    if limit:
+        print(f"  Limit: {limit} samples")
     
-    summary = generate_summary_report(
-        scores_by_mode=scores_by_mode,
-        scores_by_lang=scores_by_lang,
-        output_file=paths["summary"]
+    stats = run_pairwise_judging(
+        text_only_predictions=paths["predictions_text_only"],
+        text_image_predictions=paths["predictions_text_image"],
+        samples_file=paths["samples"],
+        output_file=paths["judge_results"],
+        model=judge_model,
+        limit=limit
     )
     
     elapsed = time.time() - start_time
     
-    print(f"  Summary saved to: {paths['summary']}")
+    print(f"\n  Results:")
+    print(f"    Total judged: {stats['total']}")
+    print(f"    Text-Only wins: {stats['text_only_wins']}")
+    print(f"    Text-Image wins: {stats['text_image_wins']}")
+    print(f"    Ties: {stats['ties']}")
+    print(f"    Errors: {stats['errors']}")
     print(f"  Time: {elapsed:.1f}s")
     
     return {
-        "summary": summary,
+        "stats": stats,
+        "elapsed_sec": elapsed
+    }
+
+
+def run_aggregation(paths: Dict[str, Path], base_dir: Path) -> Dict[str, Any]:
+    """Stage 5: Summary & Analysis."""
+    print("\n" + "="*60)
+    print("STAGE 5: Summary & Analysis")
+    print("="*60)
+    
+    start_time = time.time()
+    
+    scores_dir = paths["scores_text_only"].parent
+    summaries_dir = base_dir / "artifacts" / "summaries"
+    
+    # Check if we have score files
+    has_scores = paths["scores_text_only"].exists() and paths["scores_text_image"].exists()
+    has_judge = paths["judge_results"].exists()
+    
+    if not has_scores and not has_judge:
+        print("  No results to summarize!")
+        return {"error": "No scores or judge results found"}
+    
+    # Generate full summary (CometKiwi + Judge + Text Report)
+    print("  Generating evaluation summaries...")
+    result = generate_full_summary(
+        scores_dir=scores_dir,
+        output_dir=summaries_dir,
+        judge_results_file=paths["judge_results"] if has_judge else None
+    )
+    
+    # Print key results
+    if "error" not in result.get("comet_summary", {}):
+        comet = result["comet_summary"]
+        print(f"\n  CometKiwi Results:")
+        print(f"    Text-Only mean:  {comet['overall']['text_only']['mean']:.4f}")
+        print(f"    Text-Image mean: {comet['overall']['text_image']['mean']:.4f}")
+        print(f"    Delta: {comet['overall']['delta']:+.4f}")
+    
+    if "error" not in result.get("judge_summary", {}):
+        judge = result["judge_summary"]
+        print(f"\n  LLM Judge Results ({judge['judge_model']}):")
+        print(f"    Text-Image wins: {judge['overall']['text_image_wins']} ({judge['overall']['text_image_win_rate']:.1f}%)")
+        print(f"    Text-Only wins:  {judge['overall']['text_only_wins']} ({judge['overall']['text_only_win_rate']:.1f}%)")
+    
+    # Run error analysis if predictions exist
+    if paths["predictions_text_only"].exists() and paths["predictions_text_image"].exists():
+        print("\n  Running error taxonomy analysis...")
+        try:
+            error_stats = run_error_analysis(
+                samples_file=paths["samples"],
+                text_only_preds=paths["predictions_text_only"],
+                text_image_preds=paths["predictions_text_image"],
+                output_dir=base_dir / "artifacts" / "reports"
+            )
+            result["error_analysis"] = error_stats
+            print(f"    Text-Only issues:  {error_stats['text_only_issues']}")
+            print(f"    Text-Image issues: {error_stats['text_image_issues']}")
+        except Exception as e:
+            print(f"    Error analysis failed: {e}")
+    
+    elapsed = time.time() - start_time
+    
+    print(f"\n  Files saved:")
+    for name, path in result["files"].items():
+        print(f"    - {name}: {path}")
+    print(f"  Time: {elapsed:.1f}s")
+    
+    return {
+        "files": result["files"],
         "elapsed_sec": elapsed
     }
 
@@ -294,7 +381,7 @@ def run_pipeline(
         else:
             print("\n  Skipping text_image inference: no samples with images")
     
-    # Stage 3: Scoring
+    # Stage 3: Scoring (CometKiwi)
     if "scoring" in stages or "all" in stages:
         if paths["predictions_text_only"].exists():
             stage_stats["scoring_text_only"] = run_scoring(paths, "text_only")
@@ -302,9 +389,23 @@ def run_pipeline(
         if paths["predictions_text_image"].exists():
             stage_stats["scoring_text_image"] = run_scoring(paths, "text_image")
     
-    # Stage 4: Aggregation
-    if "aggregation" in stages or "all" in stages:
-        stage_stats["aggregation"] = run_aggregation(paths)
+    # Stage 4: LLM-as-a-Judge (Pairwise)
+    if "judging" in stages or "all" in stages:
+        # Only run if both prediction files exist
+        if paths["predictions_text_only"].exists() and paths["predictions_text_image"].exists():
+            import os
+            judge_model = os.environ.get("MODEL_NAME", "gpt-4o-mini")
+            stage_stats["judging"] = run_judging(
+                paths, 
+                judge_model=judge_model,
+                limit=limit  # Can limit API calls
+            )
+        else:
+            print("\n  Skipping judging: need both text_only and text_image predictions")
+    
+    # Stage 5: Summary & Analysis
+    if "aggregation" in stages or "summary" in stages or "all" in stages:
+        stage_stats["aggregation"] = run_aggregation(paths, base_dir)
     
     total_elapsed = time.time() - total_start
     
@@ -329,9 +430,9 @@ def main():
     parser = argparse.ArgumentParser(description="Run multimodal MT evaluation pipeline")
     parser.add_argument(
         "--stage", 
-        choices=["all", "build_samples", "inference", "scoring", "aggregation"],
+        choices=["all", "build_samples", "inference", "scoring", "judging", "summary", "aggregation"],
         default="all",
-        help="Pipeline stage to run"
+        help="Pipeline stage to run (summary = aggregation + reports)"
     )
     parser.add_argument(
         "--limit",
@@ -349,6 +450,11 @@ def main():
         default="mps",
         choices=["mps", "cuda", "cpu"],
         help="Device for inference"
+    )
+    parser.add_argument(
+        "--judge-model",
+        default="gpt-4o-mini",
+        help="Model for LLM-as-a-Judge (default: gpt-4o-mini)"
     )
     parser.add_argument(
         "--with-images-only",

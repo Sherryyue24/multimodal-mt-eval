@@ -78,22 +78,10 @@ def _get_unified_prompt_template(
     src_desc = _get_language_description(source_lang)
     tgt_desc = _get_language_description(target_lang)
     
-    # Base template with strong output constraints (including LVLM-specific)
-    template = f"""Translate the following text from {src_desc} to {tgt_desc}.
-Use any provided context only if it helps improve translation accuracy.
-Output ONLY the translation in {tgt_desc}.
-Do NOT include explanations, descriptions, or the original text.
-Do NOT mention the image, visual content, or context explicitly.
-"""
-    
-    # Add filtered context instruction as supplementary info (NOT as replacement)
-    filtered_ctx = _normalize_context_instruction(context_instruction)
-    if filtered_ctx:
-        template += f"""\nAdditional context:
-{filtered_ctx}
-"""
-    
-    template += f"""\nSource text:
+    # SIMPLIFIED prompt - shorter is better for instruction following
+    # Long prompts cause the model to echo/repeat instructions
+    template = f"""Translate to {tgt_desc}:
+
 {source_text}
 
 Translation:"""

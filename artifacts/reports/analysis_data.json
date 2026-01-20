@@ -1,0 +1,502 @@
+{
+  "generated": "2026-01-20T14:27:37.385229",
+  "summary": {
+    "total_samples": 265,
+    "text_only_issues": 30,
+    "text_image_issues": 14,
+    "improvement_samples": 16,
+    "improvement_percent": 6.037735849056604
+  },
+  "per_language": {
+    "en-ar_EG": {
+      "count": 9,
+      "to_issues": 2,
+      "ti_issues": 0,
+      "to_length": 4631,
+      "ti_length": 10541,
+      "ti_better": 2,
+      "to_better": 0
+    },
+    "en-bho_IN": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 24240,
+      "ti_length": 8484,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-bn_BD": {
+      "count": 9,
+      "to_issues": 1,
+      "ti_issues": 0,
+      "to_length": 4910,
+      "ti_length": 5747,
+      "ti_better": 1,
+      "to_better": 0
+    },
+    "en-cs_CZ": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 16594,
+      "ti_length": 5889,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-de_DE": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 38417,
+      "ti_length": 27611,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-el_GR": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 16279,
+      "ti_length": 8969,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-et_EE": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 23910,
+      "ti_length": 20699,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-fa_IR": {
+      "count": 9,
+      "to_issues": 1,
+      "ti_issues": 0,
+      "to_length": 3096,
+      "ti_length": 6710,
+      "ti_better": 1,
+      "to_better": 0
+    },
+    "en-hi_IN": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 2641,
+      "ti_length": 4463,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-id_ID": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 23022,
+      "ti_length": 15804,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-is_IS": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 3757,
+      "ti_length": 12006,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-it_IT": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 8491,
+      "ti_length": 9329,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-ja_JP": {
+      "count": 9,
+      "to_issues": 7,
+      "ti_issues": 4,
+      "to_length": 5363,
+      "ti_length": 7137,
+      "ti_better": 3,
+      "to_better": 0
+    },
+    "en-kn_IN": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 13006,
+      "ti_length": 7377,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-ko_KR": {
+      "count": 9,
+      "to_issues": 2,
+      "ti_issues": 2,
+      "to_length": 4035,
+      "ti_length": 5746,
+      "ti_better": 2,
+      "to_better": 2
+    },
+    "en-lt_LT": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 7544,
+      "ti_length": 7850,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-mas_KE": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 9818,
+      "ti_length": 6601,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-mr_IN": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 8438,
+      "ti_length": 6780,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-ro_RO": {
+      "count": 9,
+      "to_issues": 1,
+      "ti_issues": 0,
+      "to_length": 7637,
+      "ti_length": 7743,
+      "ti_better": 1,
+      "to_better": 0
+    },
+    "en-ru_RU": {
+      "count": 9,
+      "to_issues": 2,
+      "ti_issues": 0,
+      "to_length": 9098,
+      "ti_length": 6427,
+      "ti_better": 2,
+      "to_better": 0
+    },
+    "en-sr_Cyrl_RS": {
+      "count": 9,
+      "to_issues": 1,
+      "ti_issues": 0,
+      "to_length": 12448,
+      "ti_length": 7481,
+      "ti_better": 1,
+      "to_better": 0
+    },
+    "en-sr_Latn_RS": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 11990,
+      "ti_length": 6329,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-sv_SE": {
+      "count": 9,
+      "to_issues": 1,
+      "ti_issues": 0,
+      "to_length": 10704,
+      "ti_length": 17295,
+      "ti_better": 1,
+      "to_better": 0
+    },
+    "en-th_TH": {
+      "count": 9,
+      "to_issues": 2,
+      "ti_issues": 1,
+      "to_length": 7949,
+      "ti_length": 15841,
+      "ti_better": 2,
+      "to_better": 1
+    },
+    "en-tr_TR": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 8796,
+      "ti_length": 9080,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-uk_UA": {
+      "count": 9,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 5924,
+      "ti_length": 15440,
+      "ti_better": 0,
+      "to_better": 0
+    },
+    "en-vi_VN": {
+      "count": 9,
+      "to_issues": 2,
+      "ti_issues": 0,
+      "to_length": 8174,
+      "ti_length": 9970,
+      "ti_better": 2,
+      "to_better": 0
+    },
+    "en-zh_CN": {
+      "count": 9,
+      "to_issues": 8,
+      "ti_issues": 7,
+      "to_length": 3990,
+      "ti_length": 7219,
+      "ti_better": 1,
+      "to_better": 0
+    },
+    "ja-zh_CN": {
+      "count": 13,
+      "to_issues": 0,
+      "ti_issues": 0,
+      "to_length": 12011,
+      "ti_length": 8617,
+      "ti_better": 0,
+      "to_better": 0
+    }
+  },
+  "per_domain": {
+    "social": {
+      "count": 265,
+      "to_issues": 30,
+      "ti_issues": 14
+    }
+  },
+  "comparison_details": [
+    {
+      "id": "en-ar_EG_#_social_#_112502991207286008",
+      "lang_pair": "en-ar_EG",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "أي نочной جميلة لبدء تناول من قناعتي الياباني\nفي كوب بسيط مع هذا #رượم\nالزهور ال",
+      "ti_preview": "أنا أبدأ اليوم في تناول منتجات جودة عالية من مجموعتي من الأعشاب الكبيرة، حيث أنن"
+    },
+    {
+      "id": "en-ar_EG_#_social_#_114417630342798842",
+      "lang_pair": "en-ar_EG",
+      "to_issues": [
+        "repetition"
+      ],
+      "ti_issues": [],
+      "to_preview": "Thread 🗣️\n\nIndigos journel to a new livin'! A thread 📦\n\nNota: every major update",
+      "ti_preview": "Thread: Indigo's Journey to a New Life\n\nIndigo is embarking on a new chapter in "
+    },
+    {
+      "id": "en-bn_BD_#_social_#_114259278941004365",
+      "lang_pair": "en-bn_BD",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "I idly suggested doing something like this yesterday, so for March, I will post ",
+      "ti_preview": "Name1\n\nI idly suggested doing this yesterday since for March I plan to post one "
+    },
+    {
+      "id": "en-fa_IR_#_social_#_114417630342798842",
+      "lang_pair": "en-fa_IR",
+      "to_issues": [
+        "repetition"
+      ],
+      "ti_issues": [],
+      "to_preview": "Thread 📸\n\nIndigos journel to a new livin'! A thread 🗣️\n\nNota: all major update w",
+      "ti_preview": "Thread:\n\nName1 @user1\nIndigo’s journey to a brand new life! This thread will con"
+    },
+    {
+      "id": "en-ja_JP_#_social_#_114157282362077575",
+      "lang_pair": "en-ja_JP",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "以下は、何かをしないべきだという簡単で楽しい教訓的なストーリーです。特に、あなたが「Jim Grandone」のページを見ている場合に、「政治活動家」という名前",
+      "ti_preview": "The text appears to be written in Chinese. Here is an English translation:\n\nHere"
+    },
+    {
+      "id": "en-ja_JP_#_social_#_114300646822630777",
+      "lang_pair": "en-ja_JP",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "ただ、ドーリトスのラビットホールに落ちた。\n\nカウンセル薬局CVSで妻を購入するため（病気による）医療用紙が必要なので朝までパソコンを見ていて食べ物を探すために",
+      "ti_preview": "I fell into a Doritos Rabbit Hole while eating a bag of Doritos. I went to CVS P"
+    },
+    {
+      "id": "en-ja_JP_#_social_#_114417630342798842",
+      "lang_pair": "en-ja_JP",
+      "to_issues": [
+        "repetition"
+      ],
+      "ti_issues": [],
+      "to_preview": "Thread 🗣️\n\nIndigos nuova lezione di vita! Una spilla\nNota: tutti gli aggiornamen",
+      "ti_preview": "Thread: Indigo's Journey to a New Life\n\nIndigo is embarking on a new chapter in "
+    },
+    {
+      "id": "en-ko_KR_#_social_#_112502991207286008",
+      "lang_pair": "en-ko_KR",
+      "to_issues": [],
+      "ti_issues": [
+        "lang_mixing"
+      ],
+      "to_preview": "일상적인 저녁을 시작하여 일본의 술 스택에 들어가기 위해 아침 식사 시간이 되었습니다.\n#리움과 함께 한 잔으로 #라임을 즐기는 순간입니다.\n그",
+      "ti_preview": "이 저녁에 시작해서 일본의 룸 스택을 계속 탐험하고 싶습니다.\n코르 코르를 다시 한번 사용해보았어요! 이번에는 \"산업적\" (안데유스티리얼) 색상"
+    },
+    {
+      "id": "en-ko_KR_#_social_#_114259278941004365",
+      "lang_pair": "en-ko_KR",
+      "to_issues": [],
+      "ti_issues": [
+        "lang_mixing"
+      ],
+      "to_preview": "이번 일요일에 대해 이야기한 것이 있었으므로 이달에는 매월 한 번의 카드를 그린 슬로우 테라트 딕스에서 출발하여 스위치 10을 시작합니다. 이는",
+      "ti_preview": "用户名1\n\n我昨天提议过要这样做，所以从三月开始我会每天发一张来自苏珊娜·特里斯特的《Hexen 2。》塔罗牌。\n\n这副卡套由所有主要和次要元素都描绘了技术历史"
+    },
+    {
+      "id": "en-ko_KR_#_social_#_114294867111841563",
+      "lang_pair": "en-ko_KR",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "이전 деcade에 대부분 게임을 PC에서 즐기고 있었지만, 제 선호하는 키보드와 마우스의 조합은 컨트롤러입니다.\nKB+M 플레이의 장점과는 달",
+      "ti_preview": "Thread discussing preferences for different types of computer gaming controllers"
+    },
+    {
+      "id": "en-ko_KR_#_social_#_114417630342798842",
+      "lang_pair": "en-ko_KR",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "🧵 素引の旅へようこそ！一部の一文\n注意：全ての大規模な更新は、一文中始まる。\n私はドイツに移住し新しい生活を始めたい。このトピックへのリンクでその旅を追うこと",
+      "ti_preview": "Thread: Indigo's Journey to a New Life\n\nIndigo is embarking on a new chapter in "
+    },
+    {
+      "id": "en-ro_RO_#_social_#_114417630342798842",
+      "lang_pair": "en-ro_RO",
+      "to_issues": [
+        "repetition"
+      ],
+      "ti_issues": [],
+      "to_preview": "Thread 📸\n\nIndigos journel to a new livin'! A thread 🗣️\n\nNota: every major update",
+      "ti_preview": "Thread:\n\nName1 @user1\nIndigo’s journey to a brand new life! This thread will con"
+    },
+    {
+      "id": "en-ru_RU_#_social_#_114151944720213193",
+      "lang_pair": "en-ru_RU",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "Сказка для сна!\nЧто же произошло со 键盘T9? Почему цифры 7 и 9 имеют четыре буквы,",
+      "ti_preview": "Story bedtime! What's going on with T9 keyboard systems? Why does 7 and '9' have"
+    },
+    {
+      "id": "en-ru_RU_#_social_#_114294867111841563",
+      "lang_pair": "en-ru_RU",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "Вот перевод на русский язык:\n\nНесмотря на то что я в основном перешел к компьюте",
+      "ti_preview": "Thread discussing preferences for computer game controllers, mentioning personal"
+    },
+    {
+      "id": "en-sr_Cyrl_RS_#_social_#_114417630342798842",
+      "lang_pair": "en-sr_Cyrl_RS",
+      "to_issues": [
+        "repetition"
+      ],
+      "ti_issues": [],
+      "to_preview": "Thread 📸\n\nIndigos journel to a new livin'! A thread 🗣️\n\nNota: all major update w",
+      "ti_preview": "Thread:\n\nName1 @user1\nIndigo’s journey to a brand new life! This thread will con"
+    },
+    {
+      "id": "en-sv_SE_#_social_#_114417630342798842",
+      "lang_pair": "en-sv_SE",
+      "to_issues": [
+        "repetition"
+      ],
+      "ti_issues": [],
+      "to_preview": "Thread 📸\n\nIndigos journel to a new livin'! A thread 🗣️\n\nNota: all major update w",
+      "ti_preview": "Thread: Indigo's Journey to a New Life\n\nNote: Major updates will begin with the "
+    },
+    {
+      "id": "en-th_TH_#_social_#_112502991207286008",
+      "lang_pair": "en-th_TH",
+      "to_issues": [],
+      "ti_issues": [
+        "lang_mixing"
+      ],
+      "to_preview": "คืนที่ดีนี้มาสips ในวันของฉันญี่ปุ่นเก็บรักษา\nมื้อพิเศษกับข้าวสาร #รูม\nกลิ่นมือถ",
+      "ti_preview": "A nice evening to start drinking some Japanese Rum.\nI have another drink with th"
+    },
+    {
+      "id": "en-th_TH_#_social_#_114259278941004365",
+      "lang_pair": "en-th_TH",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "Tôi đã gợi ý làm điều này hôm qua và từ tháng ba tôi sẽ đăng một bài viết mỗi ng",
+      "ti_preview": "Thai"
+    },
+    {
+      "id": "en-th_TH_#_social_#_114300646822630777",
+      "lang_pair": "en-th_TH",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "\"Đã rơi vào một hố của Doritos như con thỏ\"\n\"Nếu tôi đi đến CVS để lấy giấy tờ c",
+      "ti_preview": "The tweet reads:\n\n\"Just fell down a doritos rabbit hole.\"\n\nIt mentions falling i"
+    },
+    {
+      "id": "en-vi_VN_#_social_#_114151944720213193",
+      "lang_pair": "en-vi_VN",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "Trò chuyện về đêm!\nĐiều gì xảy ra với bàn phím T9? Tại sao số 7 và 9 có 4 chữ cá",
+      "ti_preview": "T9 là một công cụ giúp người dùng dễ dàng gõ các ký tự trên bàn phím điện thoại "
+    },
+    {
+      "id": "en-vi_VN_#_social_#_114259278941004365",
+      "lang_pair": "en-vi_VN",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "Tôi đã gợi ý làm điều này hôm qua và từ tháng ba tôi sẽ đăng một bài viết mỗi ng",
+      "ti_preview": "Name1\n\nI idly suggested doing this yesterday since for March I plan to post one "
+    },
+    {
+      "id": "en-zh_CN_#_social_#_114417630342798842",
+      "lang_pair": "en-zh_CN",
+      "to_issues": [
+        "lang_mixing"
+      ],
+      "ti_issues": [],
+      "to_preview": "🧵 索尔比的旅程到一个新的生活！一条线\n注：所有主要更新都将从这条线开始使用表情符号。\n我正试图搬到德国并找到新的生活！关注此条线以跟踪这一旅程。过去的几小时或",
+      "ti_preview": "Thread: Indigo's Journey to a New Life\n\nIndigo is embarking on a new chapter in "
+    }
+  ]
+}

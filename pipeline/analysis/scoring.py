@@ -19,7 +19,7 @@ class CometKiwiScorer:
     CometKiwi evaluates translation quality without reference translations.
     """
     
-    def __init__(self, model_name: str = "Unbabel/wmt22-comet-da"):
+    def __init__(self, model_name: str = "Unbabel/wmt22-cometkiwi-da"):
         self.model_name = model_name
         self.model = None
     
@@ -61,7 +61,13 @@ class CometKiwiScorer:
             data.append(item)
         
         # Run scoring
-        output = self.model.predict(data, batch_size=8, gpus=0)
+        # Note: Newer PyTorch has issues with num_workers and multiprocessing_context
+        # Using accelerator="cpu" instead of gpus=0 for newer versions
+        try:
+            output = self.model.predict(data, batch_size=8, accelerator="cpu")
+        except TypeError:
+            # Fallback for older COMET versions
+            output = self.model.predict(data, batch_size=8, gpus=0)
         
         return output.scores
     

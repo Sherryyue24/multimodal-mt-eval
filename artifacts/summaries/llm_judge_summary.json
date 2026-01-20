@@ -1,0 +1,217 @@
+{
+  "metric": "LLM-as-a-Judge (Pairwise)",
+  "judge_model": "gpt-4o",
+  "timestamp": "2026-01-20T15:38:34.065296",
+  "total_samples": 265,
+  "overall": {
+    "text_image_wins": 169,
+    "text_only_wins": 90,
+    "ties": 6,
+    "errors": 0,
+    "text_image_win_rate": 63.8,
+    "text_only_win_rate": 34.0
+  },
+  "confidence_distribution": {
+    "high": 169,
+    "low": 18,
+    "medium": 78
+  },
+  "by_language": {
+    "ar_EG": {
+      "text_image_wins": 7,
+      "text_only_wins": 1,
+      "ties": 1,
+      "text_image_win_rate": 77.8,
+      "count": 9
+    },
+    "bho_IN": {
+      "text_image_wins": 7,
+      "text_only_wins": 2,
+      "ties": 0,
+      "text_image_win_rate": 77.8,
+      "count": 9
+    },
+    "bn_BD": {
+      "text_image_wins": 9,
+      "text_only_wins": 0,
+      "ties": 0,
+      "text_image_win_rate": 100.0,
+      "count": 9
+    },
+    "cs_CZ": {
+      "text_image_wins": 4,
+      "text_only_wins": 5,
+      "ties": 0,
+      "text_image_win_rate": 44.4,
+      "count": 9
+    },
+    "de_DE": {
+      "text_image_wins": 5,
+      "text_only_wins": 4,
+      "ties": 0,
+      "text_image_win_rate": 55.6,
+      "count": 9
+    },
+    "el_GR": {
+      "text_image_wins": 6,
+      "text_only_wins": 3,
+      "ties": 0,
+      "text_image_win_rate": 66.7,
+      "count": 9
+    },
+    "et_EE": {
+      "text_image_wins": 7,
+      "text_only_wins": 2,
+      "ties": 0,
+      "text_image_win_rate": 77.8,
+      "count": 9
+    },
+    "fa_IR": {
+      "text_image_wins": 8,
+      "text_only_wins": 1,
+      "ties": 0,
+      "text_image_win_rate": 88.9,
+      "count": 9
+    },
+    "hi_IN": {
+      "text_image_wins": 7,
+      "text_only_wins": 1,
+      "ties": 1,
+      "text_image_win_rate": 77.8,
+      "count": 9
+    },
+    "id_ID": {
+      "text_image_wins": 7,
+      "text_only_wins": 2,
+      "ties": 0,
+      "text_image_win_rate": 77.8,
+      "count": 9
+    },
+    "is_IS": {
+      "text_image_wins": 4,
+      "text_only_wins": 1,
+      "ties": 4,
+      "text_image_win_rate": 44.4,
+      "count": 9
+    },
+    "it_IT": {
+      "text_image_wins": 3,
+      "text_only_wins": 6,
+      "ties": 0,
+      "text_image_win_rate": 33.3,
+      "count": 9
+    },
+    "ja_JP": {
+      "text_image_wins": 7,
+      "text_only_wins": 2,
+      "ties": 0,
+      "text_image_win_rate": 77.8,
+      "count": 9
+    },
+    "kn_IN": {
+      "text_image_wins": 6,
+      "text_only_wins": 3,
+      "ties": 0,
+      "text_image_win_rate": 66.7,
+      "count": 9
+    },
+    "ko_KR": {
+      "text_image_wins": 7,
+      "text_only_wins": 2,
+      "ties": 0,
+      "text_image_win_rate": 77.8,
+      "count": 9
+    },
+    "lt_LT": {
+      "text_image_wins": 7,
+      "text_only_wins": 2,
+      "ties": 0,
+      "text_image_win_rate": 77.8,
+      "count": 9
+    },
+    "mas_KE": {
+      "text_image_wins": 2,
+      "text_only_wins": 7,
+      "ties": 0,
+      "text_image_win_rate": 22.2,
+      "count": 9
+    },
+    "mr_IN": {
+      "text_image_wins": 5,
+      "text_only_wins": 4,
+      "ties": 0,
+      "text_image_win_rate": 55.6,
+      "count": 9
+    },
+    "ro_RO": {
+      "text_image_wins": 7,
+      "text_only_wins": 2,
+      "ties": 0,
+      "text_image_win_rate": 77.8,
+      "count": 9
+    },
+    "ru_RU": {
+      "text_image_wins": 3,
+      "text_only_wins": 6,
+      "ties": 0,
+      "text_image_win_rate": 33.3,
+      "count": 9
+    },
+    "sr_Cyrl_RS": {
+      "text_image_wins": 3,
+      "text_only_wins": 6,
+      "ties": 0,
+      "text_image_win_rate": 33.3,
+      "count": 9
+    },
+    "sr_Latn_RS": {
+      "text_image_wins": 5,
+      "text_only_wins": 4,
+      "ties": 0,
+      "text_image_win_rate": 55.6,
+      "count": 9
+    },
+    "sv_SE": {
+      "text_image_wins": 6,
+      "text_only_wins": 3,
+      "ties": 0,
+      "text_image_win_rate": 66.7,
+      "count": 9
+    },
+    "th_TH": {
+      "text_image_wins": 5,
+      "text_only_wins": 4,
+      "ties": 0,
+      "text_image_win_rate": 55.6,
+      "count": 9
+    },
+    "tr_TR": {
+      "text_image_wins": 5,
+      "text_only_wins": 4,
+      "ties": 0,
+      "text_image_win_rate": 55.6,
+      "count": 9
+    },
+    "uk_UA": {
+      "text_image_wins": 6,
+      "text_only_wins": 3,
+      "ties": 0,
+      "text_image_win_rate": 66.7,
+      "count": 9
+    },
+    "vi_VN": {
+      "text_image_wins": 5,
+      "text_only_wins": 4,
+      "ties": 0,
+      "text_image_win_rate": 55.6,
+      "count": 9
+    },
+    "zh_CN": {
+      "text_image_wins": 16,
+      "text_only_wins": 6,
+      "ties": 0,
+      "text_image_win_rate": 72.7,
+      "count": 22
+    }
+  }
+}

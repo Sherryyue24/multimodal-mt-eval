@@ -43,12 +43,14 @@ Respond in JSON format:
 
 class GPTJudge:
     """
-    LLM-as-a-Judge using OpenAI GPT models.
+    LLM-as-a-Judge using OpenAI-compatible API.
+    Supports custom base_url for third-party providers.
     """
     
-    def __init__(self, model: str = "gpt-4", api_key: Optional[str] = None):
+    def __init__(self, model: str = "gpt-4", api_key: Optional[str] = None, base_url: Optional[str] = None):
         self.model = model
         self.api_key = api_key
+        self.base_url = base_url
         self.client = None
     
     def setup(self):
@@ -56,11 +58,17 @@ class GPTJudge:
         from openai import OpenAI
         import os
         
-        api_key = self.api_key or os.environ.get("OPENAI_API_KEY")
-        if not api_key:
-            raise ValueError("OpenAI API key required. Set OPENAI_API_KEY env var.")
+        api_key = self.api_key or os.environ.get("API_KEY") or os.environ.get("OPENAI_API_KEY")
+        base_url = self.base_url or os.environ.get("API_BASE_URL")
         
-        self.client = OpenAI(api_key=api_key)
+        if not api_key:
+            raise ValueError("API key required. Set API_KEY or OPENAI_API_KEY env var.")
+        
+        # Support third-party OpenAI-compatible APIs
+        if base_url:
+            self.client = OpenAI(api_key=api_key, base_url=base_url)
+        else:
+            self.client = OpenAI(api_key=api_key)
     
     def judge_pair(
         self,
@@ -102,11 +110,12 @@ class GPTJudge:
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[
-                    {"role": "system", "content": "You are an expert translation quality evaluator. Always respond in valid JSON."},
+                    {"role": "system", "content": "You are an expert translation quality evaluator. Always respond in valid JSON only, no other text."},
                     {"role": "user", "content": prompt}
                 ],
-                temperature=0,
-                max_tokens=200
+                temperature=0.0,
+                top_p=1.0,
+                max_tokens=300
             )
             
             result_text = response.choices[0].message.content.strip()
@@ -152,7 +161,7 @@ def run_pairwise_judging(
     text_image_predictions: Path,
     samples_file: Path,
     output_file: Path,
-    model: str = "gpt-4",
+    model: Optional[str] = None,
     limit: Optional[int] = None
 ) -> Dict[str, Any]:
     """
@@ -163,13 +172,18 @@ def run_pairwise_judging(
         text_image_predictions: Path to text_image predictions.jsonl
         samples_file: Path to samples.jsonl
         output_file: Path to output judge_results.jsonl
-        model: GPT model to use
+        model: Model to use (default: from MODEL_NAME env or gpt-4)
         limit: Max comparisons
         
     Returns:
         Stats dict
     """
+    import os
     from tqdm import tqdm
+    
+    # Get model from env or use default
+    if model is None:
+        model = os.environ.get("MODEL_NAME", "gpt-4")
     from ..processing.build_samples import load_samples
     
     # Load data
